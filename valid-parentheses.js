@@ -1,15 +1,43 @@
+// function isValid(s){
+
+//     let stack = [];
+
+//     for(let i=0 ; i<s.length ; i++){
+//         if(s[i] === "[" || s[i] === "{" || s[i] === "(" ){
+//             stack.push(s[i]);
+//         } 
+
+//         else{
+//             let top = stack.pop();
+//             if(!top || (top === "[" && s[i] != "]") || (top === "{" && s[i] != "}") || (top === "(" && s[i] != ")")){
+//                 return false;
+//             }
+//         }
+//     }
+//     return stack.length === 0;
+// }
+// let s = "()"
+// console.log(isValid(s));
+
+// clean code using map
 function isValid(s){
 
     let stack = [];
 
+    let map = {
+        "[" : "]",
+        "{" : "}",
+        "(" : ")"
+    }
+
     for(let i=0 ; i<s.length ; i++){
-        if(s[i] === "[" || s[i] === "{" || s[i] === "(" ){
+        if(map[s[i]]){
             stack.push(s[i]);
         } 
 
         else{
             let top = stack.pop();
-            if(!top || (top === "[" && s[i] != "]") || (top === "{" && s[i] != "}") || (top === "(" && s[i] != ")")){
+            if(!top || (s[i] != map[top])){
                 return false;
             }
         }
